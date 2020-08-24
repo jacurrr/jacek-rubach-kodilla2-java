@@ -13,6 +13,10 @@ import java.util.List;
                 " WHERE LEFT(COMPANY_NAME,3) = :STRING",
         resultClass = Company.class
 )
+@NamedQuery(
+        name = "Company.retrieveCompaniesContainingStringInTheName",
+        query = "FROM Company WHERE name LIKE :STRING"
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {

@@ -9,6 +9,13 @@ import java.util.List;
         name = "Employee.retrieveEmployeesWithLastNameEquals",
         query = "FROM Employee WHERE lastName = :LASTNAME"
 )
+@NamedNativeQuery(
+        name = "Employee.retrieveEmployeesContainingStringInTheName",
+        query = "SELECT * FROM EMPLOYEES" +
+                " WHERE CONCAT(LASTNAME,' ',FIRSTNAME) LIKE :STRING" +
+                " OR CONCAT(FIRSTNAME,' ',LASTNAME) LIKE :STRING",
+        resultClass = Employee.class
+)
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
