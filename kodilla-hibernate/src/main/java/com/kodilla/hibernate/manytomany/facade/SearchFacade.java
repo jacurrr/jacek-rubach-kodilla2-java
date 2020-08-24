@@ -22,13 +22,13 @@ public class SearchFacade {
 
     public List<Company> findCompaniesByNameFragment(final String string){
         LOGGER.info("Searching companies by name fragment: \""+string+"\"");
-        List<Company> companies = companyDao.retrieveCompaniesContainingStringInTheName("%"+string+"%");
+        List<Company> companies = companyDao.retrieveCompaniesContainingStringInTheName(string);
         return companies;
     }
 
     public List<Employee> findEmployeesByNameFragment(final String string){
         LOGGER.info("Searching employees by name fragment: \""+string+"\"");
-        List<Employee> employees = employeeDao.retrieveEmployeesContainingStringInTheName("%"+string+"%");
+        List<Employee> employees = employeeDao.retrieveEmployeesContainingStringInTheName(string);
         return employees;
     }
 }

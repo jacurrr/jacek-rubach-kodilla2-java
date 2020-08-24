@@ -12,8 +12,8 @@ import java.util.List;
 @NamedNativeQuery(
         name = "Employee.retrieveEmployeesContainingStringInTheName",
         query = "SELECT * FROM EMPLOYEES" +
-                " WHERE CONCAT(LASTNAME,' ',FIRSTNAME) LIKE :STRING" +
-                " OR CONCAT(FIRSTNAME,' ',LASTNAME) LIKE :STRING",
+                " WHERE CONCAT(LASTNAME,' ',FIRSTNAME) LIKE CONCAT('%',:STRING,'%')" +
+                " OR CONCAT(FIRSTNAME,' ',LASTNAME) LIKE CONCAT('%',:STRING,'%')",
         resultClass = Employee.class
 )
 @Entity
