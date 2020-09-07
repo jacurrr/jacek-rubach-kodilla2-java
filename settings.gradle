@@ -4,4 +4,6 @@ include 'kodilla-com.kodilla.patterns2'
 include 'kodilla-com.kodilla.patterns2'
 include 'kodilla-hibernate'
 include 'kodilla-patterns2'
+include 'kkodilla-jdbc'
+include 'kodilla-jdbc'
 
