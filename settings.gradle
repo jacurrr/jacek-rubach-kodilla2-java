@@ -3,4 +3,7 @@ include 'kodilla-com.kodilla.patterns2'
 include 'kodilla-hibernate'
 include 'kodilla-patterns2'
 include 'kodilla-jdbc'
+include 'kodilla-patterns'
+include 'kodilla-testing'
+include 'kodilla-stream'
 
