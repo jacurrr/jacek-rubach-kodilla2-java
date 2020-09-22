@@ -103,7 +103,7 @@ public class CrudAppTestSuite {
         return result;
     }
 
-    public void deleteTestTaskCrud(String taskName) throws InterruptedException{\
+    public void deleteTestTaskCrud(String taskName) throws InterruptedException{
         final String XPATH_DELETE =".//fieldset[1]/button[4]";
         driver.navigate().refresh();
         while(!driver.findElement(By.xpath("//select[1]")).isDisplayed());
