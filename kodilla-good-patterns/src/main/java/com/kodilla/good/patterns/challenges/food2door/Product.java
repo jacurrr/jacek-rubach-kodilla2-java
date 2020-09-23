@@ -2,6 +2,7 @@ package com.kodilla.good.patterns.challenges.food2door;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 
 public class Product {
     private final String name;
@@ -26,5 +27,16 @@ public class Product {
                 "name='" + name + '\'' +
                 ", price=" + price.setScale(2, RoundingMode.DOWN) +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        if (!Objects.equals(name, product.name)) return false;
+        return Objects.equals(price, product.price);
     }
 }

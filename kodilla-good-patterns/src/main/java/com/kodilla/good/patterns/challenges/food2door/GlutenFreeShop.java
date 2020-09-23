@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class GlutenFreeShop implements Manufacturer{
     private final List<Product> list = new ArrayList<>();
@@ -20,28 +19,18 @@ public class GlutenFreeShop implements Manufacturer{
 
     @Override
     public void process(Order order) {
-        AtomicBoolean orderResult= new AtomicBoolean(true);
+        boolean productNotMatched = false;
         BigDecimal totalPrice = BigDecimal.ZERO;
-        order.getItems().stream()
-                .map(Item::getProduct)
-                .forEach(t->{
-                    for (Product product: list
-                         ) {
-                        if(product.getName().equals(t.getName()) && product.getPrice().equals(t.getPrice())){
-                            orderResult.set(true);
-                            break;
-                        } else orderResult.set(false);
-                    }
-                });
-        if(orderResult.get()){
-            for ( Item item :
-                    order.getItems()
-                 ) {
-                totalPrice = totalPrice.add(item.getProduct().getPrice().multiply(BigDecimal.valueOf(item.getQuantity())));
+        for( Item item : order.getItems()) {
+            if(!list.contains(item.getProduct())){
+                productNotMatched = true;
+                break;
             }
-            System.out.println("Confirm Order\n"+order+"\nTotal Price"+totalPrice.setScale(2, RoundingMode.UP));
+            totalPrice = totalPrice.add(item.getProduct().getPrice().multiply(BigDecimal.valueOf(item.getQuantity())));
         }
-        else System.out.println("Dont find product in shop, check your order");
+        if(productNotMatched){
+            System.out.println("Dont find product in shop, check your order");
+        } else System.out.println("Confirm Order\n"+order+"\nTotal Price"+totalPrice.setScale(2, RoundingMode.UP));
     }
 
     public List<Product> getList() {
